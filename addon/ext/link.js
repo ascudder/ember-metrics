@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const get = Ember.get;
 const {
-  LinkComponent,
+  LinkView,
   inject,
   isPresent,
   String: emberString
@@ -11,7 +11,7 @@ const {
   camelize
 } = emberString;
 
-export default LinkComponent.reopen({
+export default LinkView.reopen({
   metrics: inject.service(),
 
   click() {

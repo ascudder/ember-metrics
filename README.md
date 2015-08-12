@@ -3,7 +3,7 @@
 
 [![npm version](https://badge.fury.io/js/ember-metrics.svg)](http://badge.fury.io/js/ember-metrics) [![Build Status](https://travis-ci.org/poteto/ember-metrics.svg)](https://travis-ci.org/poteto/ember-metrics) [![Ember Observer Score](http://emberobserver.com/badges/ember-metrics.svg)](http://emberobserver.com/addons/ember-metrics)
 
-This addon adds a simple `metrics` service and customized `LinkComponent` to your app that makes it simple to send data to multiple analytics services without having to implement a new API each time.
+This addon adds a simple `metrics` service and customized `LinkView` to your app that makes it simple to send data to multiple analytics services without having to implement a new API each time.
 
 Using this addon, you can easily use bundled adapters for various analytics services, and one API to track events, page views, and more. When you decide to add another analytics service to your stack, all you need to do is add it to your configuration, and that's it!
 
@@ -32,7 +32,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   metrics: Ember.inject.service(),
-  
+
   activate() {
     const metrics = get(this, 'metrics');
 
@@ -59,20 +59,20 @@ metrics.trackPage('GoogleAnalytics', {
 
 There are 4 main methods implemented by the service, with the same argument signature:
 
-- `trackPage([analyticsName], options)` 
-  
+- `trackPage([analyticsName], options)`
+
   This is commonly used by analytics services to track page views. Due to the way Single Page Applications implement routing, you will need to call this on the `activate` hook of each route to track all page views.
 
 - `trackEvent([analyticsName], options)`
-  
+
   This is a general purpose method for tracking a named event in your application.
 
 - `identify([analyticsName], options)`
-  
+
   For analytics services that have identification functionality.
 
 - `alias([analyticsName], options)`
-  
+
   For services that implement it, this method notifies the analytics service that an anonymous user now has a unique identifier.
 
 #### `link-to` API
@@ -96,7 +96,7 @@ ga('send', {
 });
 ```
 
-To add an attribute, just prefix it with `metrics` and enter it in camelcase. 
+To add an attribute, just prefix it with `metrics` and enter it in camelcase.
 
 ## Configuration
 
@@ -141,7 +141,7 @@ The `metricsAdapters` option in `ENV` accepts an array of objects containing set
 }
 ```
 
-Values in the `config` portion of the object are dependent on the adapter. 
+Values in the `config` portion of the object are dependent on the adapter.
 
 ### Lazy Initialization
 
@@ -178,7 +178,7 @@ First, generate a new Metrics Adapter:
 $ ember generate metrics-adapter foo-bar
 ```
 
-This creates `app/metrics-adapters/foo-bar.js` and a unit test at `tests/unit/metrics-adapters/foo-bar-test.js`, which you should now customize. 
+This creates `app/metrics-adapters/foo-bar.js` and a unit test at `tests/unit/metrics-adapters/foo-bar-test.js`, which you should now customize.
 
 ### Required Methods
 
